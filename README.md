@@ -30,8 +30,9 @@ It has 1,500 image pairs, split into 1,000 for training and 500 for testing. The
 | `Code/data.ipynb` | Loads the DeepPCB train and test splits, the test and template images, and the open/short ground truth boxes. It also shows the dataset statistics and example images |
 | `.gitignore` | Keeps the `DeepPCB` folder out of the repository |
 | `README.md` | This file |
-
+| `Code/evaluate.py` | Evaluates PCB defect detections by comparing predicted boxes with ground-truth boxes. It reports overall precision, recall, and F1-score, plus separate recall for Open and Short defects. |
 ## How to run
 
 1. Open `Code/data.ipynb` in Google Colab.
 2. Run all cells. The first cell downloads the dataset.
+3. To try the evaluation module in Google Colab, open a new notebook, paste the code from `Code/evaluate.py` into a cell, and run it. The script prints example metrics using synthetic bounding boxes. These are not the final DeepPCB test results.
