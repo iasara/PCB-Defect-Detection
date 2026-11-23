@@ -1,4 +1,3 @@
-# PCB-Defect-Detection
 # Automated PCB Defect Detection Using Classical Image Processing Techniques
 
 ARTI 403 - Image Processing | Group 2
@@ -12,6 +11,7 @@ College of Computer Science and Information Technology, Imam Abdulrahman Bin Fai
 - Dina Moteb Almsnid
 - Raghad Mohammed Alsheddi
 - Hawra Habib Alali
+- Danah Eid Aldossary
 
 ## About
 
@@ -21,18 +21,39 @@ This project detects open and short defects on PCB images using Python and OpenC
 
 DeepPCB: https://github.com/tangsanli5201/DeepPCB (accessed 15 October 2026)
 
-It has 1,500 image pairs, split into 1,000 for training and 500 for testing. The dataset is not uploaded here. The notebook downloads it in the first cell.
+It has 1,500 image pairs, split into 1,000 for development and 500 for testing. The dataset is not uploaded here. The notebook downloads it in the first cells.
+
+## Results
+
+The selected configuration uses no filter, a fixed threshold of 50, no morphology, and a minimum contour area of 200 px². On the 500 test pairs it reached 6.01% precision, 10.11% recall, and 7.54% F1-score (IoU > 0.33).
 
 ## Files
 
+All files are in the `Code` folder.
+
 | File | Description |
 |---|---|
-| `Code/data.ipynb` | Loads the DeepPCB train and test splits, the test and template images, and the open/short ground truth boxes. It also shows the dataset statistics and example images |
-| `.gitignore` | Keeps the `DeepPCB` folder out of the repository |
+| `PCB_Defect_Detection.ipynb` | Main notebook. It runs the full project in order: data loading, preprocessing, thresholding and morphology, contour detection, evaluation, and experiments |
+| `data.ipynb` | Data loading part: train and test splits, images, and the open/short ground truth boxes |
+| `preprocess.py` | Grayscale conversion, noise filtering, and template subtraction |
+| `threshold.py` | Fixed, Otsu, and adaptive thresholding, with opening and closing |
+| `threshold.ipynb` | Notebook version of the thresholding part, with example images |
+| `detection.py` | Contour detection, minimum area filter, and bounding boxes |
+| `Detection_BoundingBoxes.ipynb` | Notebook version of the detection part |
+| `pipeline.py` | Connects preprocessing, thresholding, and detection |
+| `Pipeline_Integration.ipynb` | Notebook version of the pipeline |
+| `evaluate.py` | IoU matching, TP/FP/FN, Precision, Recall, and F1-score |
+| `experiments.ipynb` | Ablation study on the development split and the final test run |
+
+Other files in the repository:
+
+| File | Description |
+|---|---|
+| `.gitignore` | Keeps the dataset folders out of the repository |
 | `README.md` | This file |
-| `Code/evaluate.py` | Evaluates PCB defect detections by comparing predicted boxes with ground-truth boxes. It reports overall precision, recall, and F1-score, plus separate recall for Open and Short defects. |
+
 ## How to run
 
-1. Open `Code/data.ipynb` in Google Colab.
-2. Run all cells. The first cell downloads the dataset.
-3. To try the evaluation module in Google Colab, open a new notebook, paste the code from `Code/evaluate.py` into a cell, and run it. The script prints example metrics using synthetic bounding boxes. These are not the final DeepPCB test results.
+1. Open `Code/PCB_Defect_Detection.ipynb` in Google Colab.
+2. Run all cells in order. The first cells download the dataset.
+3. Section 6 runs the experiments on all development and test images, so it takes longer than the other sections.
