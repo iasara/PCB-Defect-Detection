@@ -27,14 +27,21 @@ It has 1,500 image pairs, split into 1,000 for development and 500 for testing. 
 
 The selected configuration uses no filter, a fixed threshold of 50, no morphology, and a minimum contour area of 200 px². On the 500 test pairs it reached 6.01% precision, 10.11% recall, and 7.54% F1-score (IoU > 0.33).
 
-## Files
+## Repository structure
 
-All files are in the `Code` folder.
+### Final_Notebook
 
 | File | Description |
 |---|---|
-| `PCB_Defect_Detection.ipynb` | Main notebook. It runs the full project in order: data loading, preprocessing, thresholding and morphology, contour detection, evaluation, and experiments |
-| `data.ipynb` | Data loading part: train and test splits, images, and the open/short ground truth boxes |
+| `PCB_Defect_Detection.ipynb` | The full project in one notebook: data loading, preprocessing, thresholding and morphology, contour detection, evaluation, and experiments |
+
+### Code
+
+The separate parts that the final notebook was built from.
+
+| File | Description |
+|---|---|
+| `data.ipynb` | Data loading: train and test splits, images, and the open/short ground truth boxes |
 | `preprocess.py` | Grayscale conversion, noise filtering, and template subtraction |
 | `threshold.py` | Fixed, Otsu, and adaptive thresholding, with opening and closing |
 | `threshold.ipynb` | Notebook version of the thresholding part, with example images |
@@ -45,7 +52,7 @@ All files are in the `Code` folder.
 | `evaluate.py` | IoU matching, TP/FP/FN, Precision, Recall, and F1-score |
 | `experiments.ipynb` | Ablation study on the development split and the final test run |
 
-Other files in the repository:
+### Other files
 
 | File | Description |
 |---|---|
@@ -54,6 +61,6 @@ Other files in the repository:
 
 ## How to run
 
-1. Open `Code/PCB_Defect_Detection.ipynb` in Google Colab.
+1. Open `Final_Notebook/PCB_Defect_Detection.ipynb` in Google Colab.
 2. Run all cells in order. The first cells download the dataset.
 3. Section 6 runs the experiments on all development and test images, so it takes longer than the other sections.
